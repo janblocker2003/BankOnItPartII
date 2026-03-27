@@ -2,7 +2,7 @@
 
 ## UML diagram
 
-![UML for Bank](UML for Bank II.png)
+![UML for Bank](UMLForBankII.png)
 
 ## Goals for this week:
 - create the HasMenu interface
