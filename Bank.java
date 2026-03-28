@@ -5,14 +5,18 @@ public class Bank implements HasMenu{
 	
 	Admin admin = new Admin();
 	CustomerList customers = new CustomerList();
-	
+
+
 	public static void main(String[] args) {
 		new Bank();
 	} // end main
 	
 	public Bank() {
-		this.loadSampleCustomers();
+		//this.loadSampleCustomers();
+		//this.saveCustomers();
+		this.loadCustomers();
 		this.start();
+		this.saveCustomers();
 
 	} // end Bank constructor
 	
@@ -39,13 +43,17 @@ public class Bank implements HasMenu{
 				keepGoing = false;
 			} // end if
 			else if (response.equals("1")) {
+				System.out.println();
 				System.out.println("Admin login");
+				System.out.println();
 				if (this.admin.login()) {
 					startAdmin();
 				} // end if
 			} // end else if
 			else if (response.equals("2")) {
+				System.out.println();
 				System.out.println("Customer login");
+				System.out.println();
 			} // end else if
 			else {
 				System.out.println("Please enter 0, 1, or 2 ");
@@ -61,15 +69,21 @@ public class Bank implements HasMenu{
 				keepGoing = false;
 			} // end if
 			else if (response.equals("1")) {
-				System.out.println("Full customer report");
+				System.out.println();
+				System.out.println("Full customer report: ");
+				System.out.println();
 				this.reportAllCustomers();
 			} // end else if
 			else if (response.equals("2")) {
-				System.out.println("Add a customer");
+				System.out.println();
+				System.out.println("Add a customer: ");
+				System.out.println();
 				this.addUser();
 			} // end else if
 			else if (response.equals("3")) {
-				System.out.println("Apply interest to savings");
+				System.out.println();
+				System.out.println("Apply interest to savings: ");
+				System.out.println();
 				this.applyInterest();
 			} // end else if
 		} // end while loop
@@ -116,12 +130,42 @@ public class Bank implements HasMenu{
 			} // end if
 		} // end for loop
 		if (currentCustomer == null) {
+			System.out.println();
 			System.out.println("Customer not found... ");
+			System.out.println();
 		} //end if
 		else {
 			currentCustomer.start();
 		} // end else
 	} // end log in as customer
+	
+
+	public void saveCustomers() {
+		try {
+			FileOutputStream fo = new FileOutputStream("Customers.dat");
+			ObjectOutputStream obOut = new ObjectOutputStream(fo);
+			obOut.writeObject(customers);
+			obOut.close();
+			fo.close();
+		} // end try
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		} // end catch
+	} // end save customers
+
+	public void loadCustomers() {
+		try {
+			FileInputStream fi = new FileInputStream("Customers.dat");
+			ObjectInputStream obIn = new ObjectInputStream(fi);
+			customers = (CustomerList)obIn.readObject();
+			obIn.close();
+			fi.close();
+		} // end try
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		} // end catch
+	} // end load customers
+	
 } // end Bank
 
 

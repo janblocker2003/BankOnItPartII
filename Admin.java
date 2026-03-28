@@ -24,14 +24,12 @@ public class Admin extends User implements HasMenu, Serializable {
 		System.out.println("2) Add user ");
 		System.out.println("3) Apply interest to savings accounts ");
 		System.out.println();
-		System.out.println(" Your answer: ");
-
+		System.out.print("Your response: ");
 		String response = input.nextLine();
 		return response;
 		
 	} // end menu
 	
-
 	public void start(){
 
 	} // end start
