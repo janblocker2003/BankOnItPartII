@@ -6,6 +6,8 @@ public class Bank implements HasMenu{
 	Admin admin = new Admin();
 	CustomerList customers = new CustomerList();
 
+        String BOLD = "\u001B[1m";
+        String RESET = "\u001B[0m";
 
 	public static void main(String[] args) {
 		new Bank();
@@ -23,11 +25,13 @@ public class Bank implements HasMenu{
 	public String menu() {
 		Scanner input = new Scanner(System.in);
 		System.out.println();
-		System.out.println("Bank Menu ");
+		System.out.println(BOLD + "Bank Menu " + RESET);
+		System.out.println("______________________________");
 		System.out.println();
 		System.out.println("0) Exit system ");
 		System.out.println("1) Login as admin ");
 		System.out.println("2) Login as customer ");
+		System.out.println("______________________________");
 		System.out.println();
 		System.out.print("Your response: ");
 		String response = input.nextLine();
@@ -44,7 +48,8 @@ public class Bank implements HasMenu{
 			} // end if
 			else if (response.equals("1")) {
 				System.out.println();
-				System.out.println("Admin login");
+				System.out.println(BOLD + "Admin login" + RESET);
+				System.out.println("______________________________");
 				System.out.println();
 				if (this.admin.login()) {
 					startAdmin();
@@ -52,7 +57,8 @@ public class Bank implements HasMenu{
 			} // end else if
 			else if (response.equals("2")) {
 				System.out.println();
-				System.out.println("Customer login");
+				System.out.println(BOLD + "Customer login" + RESET);
+				System.out.println("______________________________");
 				System.out.println();
 			} // end else if
 			else {
@@ -70,21 +76,27 @@ public class Bank implements HasMenu{
 			} // end if
 			else if (response.equals("1")) {
 				System.out.println();
-				System.out.println("Full customer report: ");
+				System.out.println(BOLD + "Full customer report: " + RESET);
+				System.out.println("______________________________");
 				System.out.println();
 				this.reportAllCustomers();
+				System.out.println("______________________________");
 			} // end else if
 			else if (response.equals("2")) {
 				System.out.println();
-				System.out.println("Add a customer: ");
+				System.out.println(BOLD + "Add a customer: " + RESET);
+				System.out.println("______________________________");
 				System.out.println();
 				this.addUser();
+				System.out.println("______________________________");
 			} // end else if
 			else if (response.equals("3")) {
 				System.out.println();
-				System.out.println("Apply interest to savings: ");
+				System.out.println(BOLD + "Apply interest to savings: " + RESET);
+				System.out.println("______________________________");
 				System.out.println();
 				this.applyInterest();
+				System.out.println("______________________________");
 			} // end else if
 		} // end while loop
 	} // end startAdmin
