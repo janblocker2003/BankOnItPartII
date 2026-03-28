@@ -102,6 +102,26 @@ public class Bank implements HasMenu{
 			customer.savings.calcInterest();
 		} // end for
 	} // end apply interest
+	
+	public void loginAsCustomer() {
+		Scanner input = new Scanner(System.in);
+                System.out.print("User name: ");
+                String userNameIn = input.nextLine();
+                System.out.print("PIN: ");
+                String PINin = input.nextLine();
+		Customer currentCustomer = null;
+		for (Customer customer: customers) {
+			if (customer.login(userNameIn, PINin)) {
+				currentCustomer = customer;
+			} // end if
+		} // end for loop
+		if (currentCustomer == null) {
+			System.out.println("Customer not found... ");
+		} //end if
+		else {
+			currentCustomer.start();
+		} // end else
+	} // end log in as customer
 } // end Bank
 
 
